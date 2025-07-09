@@ -38,6 +38,15 @@ class ProjectTask(models.Model):
         help="Bu görevin ilişkili olduğu satış sipariş satırı."
     )
 
+    urun_adi = fields.Many2one(
+        'product.template',
+        string="Monte Edilen Ürün",
+        related='sale_order_line_id.product_template_id',
+        store=True,  # BURASI ÇOK ÖNEMLİ! True olmalı.
+        readonly=True,
+        help="Bu görevin ilişkili olduğu satış siparişi satırındaki ürün."
+    )
+
     teslim_edilen_miktar = fields.Float(
         string='Teslim Edilen Miktar',
         compute='_compute_teslim_edilen_miktar',
