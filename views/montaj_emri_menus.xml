@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_yuz_montaj_root" name="Montaj Yönetimi" sequence="100"/>
+
+    <menuitem id="menu_montaj_emri_list" name="Montaj Emirleri" parent="menu_yuz_montaj_root"
+              action="action_montaj_emri" sequence="10"/>
+
+</odoo>

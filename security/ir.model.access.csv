@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_montaj_emri_user,montaj.emri.user,model_montaj_emri,base.group_user,1,1,1,0

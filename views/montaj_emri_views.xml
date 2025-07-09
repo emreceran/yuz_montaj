@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sequence_montaj_emri" model="ir.sequence">
+        <field name="name">Montaj Emri Referansı</field>
+        <field name="code">yuz.montaj.emri.sequence</field>
+        <field name="prefix">MON/%(range_year)s/</field>
+        <field name="padding">4</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <record id="view_montaj_emri_form" model="ir.ui.view">
+        <field name="name">montaj.emri.form</field>
+        <field name="model">montaj.emri</field>
+        <field name="arch" type="xml">
+            <form string="Montaj Emri">
+                <header></header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" default_focus="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="project_id"/>
+                            <field name="task_id"/>
+                            <field name="employee_id"/>
+                        </group>
+                        <group>
+                            <field name="date"/>
+                            <field name="unit_amount" widget="float_time"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Açıklama">
+                            <field name="description"/>
+                        </page>
+                        <page string="İlgili Bilgiler">
+                             <field name="message_ids" widget="mail_thread"/>
+                             <field name="activity_ids" widget="mail_activity"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="view_montaj_emri_quick_create_form" model="ir.ui.view">
+        <field name="name">montaj.emri.quick.create.form</field>
+        <field name="model">montaj.emri</field>
+        <field name="arch" type="xml">
+            <form string="Hızlı Montaj Emri Girişi">
+                <sheet>
+                    <group>
+                        <field name="name" invisible="1"/>
+                        <field name="project_id" invisible="1"/>
+                        <field name="task_id" invisible="1"/>
+
+                        <field name="employee_id"/>
+                        <field name="date"/>
+
+                        <field name="unit_amount" string="Montaj Adeti"/> </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_montaj_emri_tree" model="ir.ui.view">
+        <field name="name">montaj.emri.tree</field>
+        <field name="model">montaj.emri</field>
+        <field name="arch" type="xml">
+            <list string="Montaj Emirleri">
+                <field name="name"/>
+                <field name="project_id"/>
+                <field name="task_id"/>
+                <field name="employee_id"/>
+                <field name="date"/>
+                <field name="unit_amount" widget="float_time"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_montaj_emri_search" model="ir.ui.view">
+        <field name="name">montaj.emri.search</field>
+        <field name="model">montaj.emri</field>
+        <field name="arch" type="xml">
+            <search string="Montaj Emirleri">
+                <field name="name"/>
+                <field name="project_id"/>
+                <field name="task_id"/>
+                <field name="employee_id"/>
+                <group expand="0" string="Grupla">
+                    <filter string="Proje" name="group_by_project" context="{'group_by':'project_id'}"/>
+                    <filter string="Personel" name="group_by_employee" context="{'group_by':'employee_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_montaj_emri" model="ir.actions.act_window">
+        <field name="name">Montaj Emirleri</field>
+        <field name="res_model">montaj.emri</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Yeni bir montaj emri oluşturun!
+            </p>
+        </field>
+    </record>
+
+</odoo>

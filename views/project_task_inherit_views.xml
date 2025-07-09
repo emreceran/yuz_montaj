@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_task_form_inherit_montaj_emri" model="ir.ui.view">
+        <field name="name">project.task.form.inherit.montaj.emri</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='tag_ids']" position="after">
+                <field name="sale_order_id"/>
+                <field name="sale_order_line_id"/>
+                <field name="teslim_edilen_miktar" readonly="1"/>
+                <field name="talep_edilen_montaj_miktari" string="Talep Edilen Montaj Miktarı"/>
+                <field name="kalan_montaj_miktari" string="Kalan Montaj Miktarı" readonly="1"/>
+            </xpath>
+
+            <xpath expr="//notebook" position="inside">
+                <page string="Montaj Emirleri">
+                    <field name="montaj_emri_ids">
+                        <list string="Montaj Emirleri" editable="bottom">
+                            <field name="name"/>
+                            <field name="employee_id"/>
+                            <field name="date"/>
+                            <field name="unit_amount" widget="float_time"/>
+                            <field name="description"/>
+                        </list>
+                        <form string="Montaj Emri">
+                            <group>
+                                <field name="name"/>
+                                <field name="employee_id"/>
+                                <field name="date"/>
+                                <field name="unit_amount" widget="float_time"/>
+                                <field name="description"/>
+                            </group>
+                        </form>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="project_task_kanban_view_inherit_montaj_emri_button" model="ir.ui.view">
+        <field name="name">project.task.kanban.inherit.montaj.emri.button</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_kanban"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <div class="oe_kanban_details">
+
+                    <div>
+                        <b>Teslim Edilen:</b> <field name="teslim_edilen_oran_str" readonly="1" class="fw-bold fs-5"/>
+                    </div>
+                    <div>
+                        <b>Yapılan Montaj:</b> <field name="yapilan_montaj_oran_str" readonly="1" class="fw-bold fs-5"/>
+                    </div>
+
+                </div>
+                <div class="oe_kanban_bottom_left">
+                    <button name="action_open_montaj_emri_entry" type="object" string="Montaj Emri Ekle" class="btn btn-primary btn-sm mt-2" icon="fa-wrench"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
